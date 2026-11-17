@@ -10,7 +10,7 @@
 :root {
   --accent: #F06218;
   --accent-hover: #D4500B;
-  --header-bg: #1B1B1B;
+  --header-bg: #121212;
   --ink: #222222;
   --muted: #555555;
   --bg: #F3F2EE;
@@ -39,7 +39,7 @@ h1, h2, h3, .logo-text {
   margin: 0;
 }
 
-h1 { font-size: clamp(38px, 5.2vw, 60px); letter-spacing: -0.02em; }
+h1 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -0.02em; }
 h2 { font-size: clamp(28px, 4vw, 42px); }
 p { margin: 0; max-width: 720px; }
 a { color: inherit; }
@@ -63,8 +63,8 @@ header .wrap {
   gap: 16px 32px;
   align-items: center;
   justify-content: space-between;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .logo-link {
@@ -74,23 +74,14 @@ header .wrap {
   text-decoration: none;
 }
 
-.logo-badge {
-  background: #FFFFFF;
-  padding: 5px 7px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-badge img {
-  height: 36px;
+.logo-link img {
+  height: 54px;
   width: auto;
   display: block;
 }
 
 .logo-text {
-  font-size: 25px;
+  font-size: 26px;
   letter-spacing: -0.02em;
   color: #FFFFFF;
 }
@@ -124,7 +115,6 @@ nav a:not(.nav-contact).active {
   border-bottom-color: var(--accent);
 }
 
-/* BAREVNĚ ODDĚLENÝ KONTAKT V MENU */
 nav a.nav-contact {
   background: var(--accent);
   color: #FFFFFF;
@@ -160,17 +150,17 @@ main {
   gap: 44px;
 }
 
-/* ÚVODNÍ STRÁNKA */
+/* ÚVODNÍ STRÁNKA + SLIDESHOW */
 .hero-split {
   display: grid;
-  grid-template-columns: 1.45fr 1fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 44px;
+  align-items: center;
   padding-bottom: 44px;
   border-bottom: 2px solid var(--ink);
 }
 
-@media (max-width: 820px) {
+@media (max-width: 840px) {
   .hero-split {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -195,42 +185,96 @@ main {
   margin-top: 6px;
 }
 
-.hero-specs {
-  border-left: 2px solid var(--line);
-  padding-left: 28px;
+/* SLIDESHOW GALERIE */
+.slideshow {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #E4E2DC;
+}
+
+.slides-track {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s ease-in-out;
 }
 
-@media (max-width: 820px) {
-  .hero-specs {
-    border-left: none;
-    border-top: 2px solid var(--line);
-    padding-left: 0;
-    padding-top: 24px;
-  }
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.spec-row {
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide-placeholder {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.spec-label {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  align-items: center;
+  justify-content: center;
   color: var(--muted);
+  font-weight: 600;
+  font-size: 18px;
 }
 
-.spec-val {
-  font-family: 'Archivo', Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ink);
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(18, 18, 18, 0.72);
+  color: #FFFFFF;
+  border: none;
+  width: 38px;
+  height: 38px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.slide-btn:hover {
+  background: var(--accent);
+}
+
+.slide-prev { left: 10px; }
+.slide-next { right: 10px; }
+
+.slide-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: rgba(18, 18, 18, 0.55);
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.slide-dot.active {
+  background: var(--accent);
 }
 
 /* ROZCESTNÍK */
@@ -327,7 +371,7 @@ main {
   gap: 10px;
 }
 
-/* ZAKÁZKOVÝ TISK - POSTUP A GALERIE REALIZACÍ */
+/* ZAKÁZKOVÝ TISK */
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -537,9 +581,7 @@ footer .wrap {
 <header>
   <div class="wrap">
     <a class="logo-link" href="#domu" data-route="domu">
-      <span class="logo-badge">
-        <img src="3DTiskGeisler%20LOGO.png" alt="Logo 3DTiskGeisler">
-      </span>
+      <img src="3DTiskGeisler%20LOGO.png" alt="Logo 3DTiskGeisler">
       <span class="logo-text">3DTisk<span>Geisler</span></span>
     </a>
     <nav>
@@ -568,23 +610,24 @@ footer .wrap {
             </div>
           </div>
 
-          <div class="hero-specs">
-            <div class="spec-row">
-              <span class="spec-label">Podporovaná data</span>
-              <span class="spec-val">STL, STEP, 3MF, OBJ nebo výkres</span>
+          <!-- AUTOMATICKÁ SLIDESHOW (10 SNÍMKŮ) -->
+          <div class="slideshow" id="heroSlideshow">
+            <div class="slides-track" id="slidesTrack">
+              <!-- Až vložíš svoje fotky, nahraď <div class="slide-placeholder">...</div> značkou <img src="vyrobek-1.jpg" alt="Výrobek 1"> -->
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 1 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 2 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 3 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 4 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 5 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 6 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 7 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 8 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 9 / 10</div></div>
+              <div class="slide"><div class="slide-placeholder">Fotka výrobku 10 / 10</div></div>
             </div>
-            <div class="spec-row">
-              <span class="spec-label">Materiály</span>
-              <span class="spec-val">PLA, PETG, ASA, ABS, pružné TPU</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-label">Rozsah výroby</span>
-              <span class="spec-val">Kusová výroba, prototypy i malé série</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-label">CAD konstrukce</span>
-              <span class="spec-val">Návrh dílu podle zadání nebo vzorku</span>
-            </div>
+            <button class="slide-btn slide-prev" id="slidePrev" aria-label="Předchozí">‹</button>
+            <button class="slide-btn slide-next" id="slideNext" aria-label="Další">›</button>
+            <div class="slide-dots" id="slideDots"></div>
           </div>
         </div>
 
@@ -660,36 +703,29 @@ footer .wrap {
           <h3>Zde je ukázka několika výrob na zakázku:</h3>
 
           <div class="gallery-grid">
-            <!-- Příklad 1: Fotka S POPISEM -->
             <figure class="gallery-item">
-              <!-- Až budeš mít fotku, nahraď div značkou: <img src="fotka1.jpg" alt="Popis fotky"> -->
               <div class="gallery-placeholder">Fotka realizace 1</div>
               <figcaption>Volitelný popisek k fotce (např. náhradní ozubené kolo z PETG).</figcaption>
             </figure>
 
-            <!-- Příklad 2: Fotka BEZ POPISKU (stačí vynechat <figcaption>) -->
             <figure class="gallery-item">
               <div class="gallery-placeholder">Fotka realizace 2 (bez textu)</div>
             </figure>
 
-            <!-- Příklad 3: Fotka S POPISEM -->
             <figure class="gallery-item">
               <div class="gallery-placeholder">Fotka realizace 3</div>
               <figcaption>Držák na míru dle dodaného náčrtu, materiál ASA.</figcaption>
             </figure>
 
-            <!-- Příklad 4: Fotka BEZ POPISKU -->
             <figure class="gallery-item">
               <div class="gallery-placeholder">Fotka realizace 4 (bez textu)</div>
             </figure>
 
-            <!-- Příklad 5: Fotka S POPISEM -->
             <figure class="gallery-item">
               <div class="gallery-placeholder">Fotka realizace 5</div>
               <figcaption>Sériový tisk 30 ks ochranných krytek.</figcaption>
             </figure>
 
-            <!-- Příklad 6: Fotka BEZ POPISKU -->
             <figure class="gallery-item">
               <div class="gallery-placeholder">Fotka realizace 6 (bez textu)</div>
             </figure>
@@ -826,6 +862,7 @@ footer .wrap {
 </footer>
 
 <script>
+  /* ROUTING STRÁNEK */
   const pages = document.querySelectorAll('.page');
   const navLinks = document.querySelectorAll('nav a');
 
@@ -859,6 +896,54 @@ footer .wrap {
 
   const initialRoute = location.hash.replace('#', '') || 'domu';
   showPage(initialRoute);
+
+  /* AUTOMATICKÁ SLIDESHOW */
+  const track = document.getElementById('slidesTrack');
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('slideDots');
+  const slideshow = document.getElementById('heroSlideshow');
+  let currentSlide = 0;
+  let slideTimer;
+
+  slides.forEach((_, idx) => {
+    const dot = document.createElement('button');
+    dot.className = 'slide-dot' + (idx === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Snímek ' + (idx + 1));
+    dot.addEventListener('click', () => goToSlide(idx));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.slide-dot');
+
+  function goToSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+
+  function startAutoSlide() {
+    slideTimer = setInterval(() => goToSlide(currentSlide + 1), 3500);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(slideTimer);
+    startAutoSlide();
+  }
+
+  document.getElementById('slidePrev').addEventListener('click', () => {
+    goToSlide(currentSlide - 1);
+    resetAutoSlide();
+  });
+
+  document.getElementById('slideNext').addEventListener('click', () => {
+    goToSlide(currentSlide + 1);
+    resetAutoSlide();
+  });
+
+  slideshow.addEventListener('mouseenter', () => clearInterval(slideTimer));
+  slideshow.addEventListener('mouseleave', startAutoSlide);
+
+  startAutoSlide();
 </script>
 
 </body>
