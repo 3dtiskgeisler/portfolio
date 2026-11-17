@@ -8,13 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --accent: #B3122B;
-  --accent-hover: #8F0E22;
-  --ink: #161616;
-  --muted: #4A4A47;
-  --bg: #F2F1EC;
+  --accent: #F06218;
+  --accent-hover: #D6510D;
+  --ink: #333333;
+  --ink-dark: #222222;
+  --muted: #595959;
+  --bg: #F5F5F4;
   --surface: #FFFFFF;
-  --line: #D4D3CC;
+  --line: #DCDCDC;
 }
 
 * { box-sizing: border-box; }
@@ -25,7 +26,7 @@ body {
   font-size: 19px;
   line-height: 1.55;
   background: var(--bg);
-  color: var(--ink);
+  color: var(--ink-dark);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,8 +39,8 @@ h1, h2, h3, .logo-text {
   margin: 0;
 }
 
-h1 { font-size: clamp(34px, 5vw, 56px); }
-h2 { font-size: clamp(28px, 4vw, 42px); }
+h1 { font-size: clamp(36px, 5vw, 56px); }
+h2 { font-size: clamp(28px, 4vw, 40px); }
 p { margin: 0; max-width: 700px; }
 a { color: inherit; }
 
@@ -50,11 +51,10 @@ a { color: inherit; }
   padding: 0 24px;
 }
 
-/* HLAVIČKA A LOGO */
+/* HLAVIČKA */
 header {
   background: var(--ink);
-  color: #fff;
-  border-bottom: 3px solid var(--accent);
+  color: #FFFFFF;
 }
 
 header .wrap {
@@ -75,30 +75,30 @@ header .wrap {
 }
 
 .logo-link img {
-  height: 44px;
+  height: 46px;
   width: auto;
   display: block;
-  border-radius: 4px;
 }
 
 .logo-text {
   font-size: 25px;
   letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .logo-text span {
-  color: #FF5A5F;
+  color: var(--accent);
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 22px;
+  gap: 6px 24px;
   font-weight: 600;
 }
 
 nav a {
-  color: #E2E1DC;
+  color: #E5E5E5;
   text-decoration: none;
   padding: 6px 2px;
   border-bottom: 2px solid transparent;
@@ -106,18 +106,18 @@ nav a {
 }
 
 nav a:hover {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 nav a.active {
-  color: #fff;
-  border-bottom-color: #FF5A5F;
+  color: #FFFFFF;
+  border-bottom-color: var(--accent);
 }
 
-/* HLAVNÍ OBSAH - PŘEPÍNÁNÍ STRÁNEK */
+/* HLAVNÍ OBSAH */
 main {
   flex: 1;
-  padding: 48px 0 72px;
+  padding: 44px 0 72px;
 }
 
 .page {
@@ -134,139 +134,177 @@ main {
   gap: 28px;
 }
 
-/* ÚVODNÍ STRÁNKA + ROZCESTNÍK */
+/* ÚVODNÍ BOX */
 .hero-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 36px;
-  align-items: center;
-  justify-content: space-between;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 36px;
-}
-
-.hero-text {
-  flex: 1 1 460px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.hero-badge {
-  display: inline-block;
-  align-self: flex-start;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  padding: 4px 12px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 4px;
 }
 
+/* ROZCESTNÍKOVÉ DLAŽDICE BEZ BAREVNÝCH PRUHŮ */
 .nav-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 18px;
 }
 
 .tile {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-left: 5px solid var(--ink);
   border-radius: 6px;
-  padding: 22px 20px;
+  padding: 24px 22px;
   text-decoration: none;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 12px;
-  transition: transform 0.12s, border-color 0.12s;
+  transition: border-color 0.15s, transform 0.12s;
 }
 
 .tile:hover {
-  transform: translateY(-2px);
   border-color: var(--accent);
-  border-left-color: var(--accent);
-}
-
-.tile.fire {
-  border-left-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .tile-title {
   font-family: 'Archivo', Arial, sans-serif;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--ink-dark);
+}
+
+.tile:hover .tile-title span {
+  color: var(--accent);
 }
 
 .tile-desc {
   font-size: 16px;
   color: var(--muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* TLAČÍTKA */
 .btn {
   display: inline-block;
   background: var(--accent);
-  color: #fff;
-  padding: 14px 26px;
+  color: #FFFFFF;
+  padding: 13px 26px;
   border-radius: 5px;
   font-size: 18px;
   font-weight: 700;
   text-decoration: none;
-  border: none;
-  cursor: pointer;
 }
 
 .btn:hover {
   background: var(--accent-hover);
 }
 
-.btn-secondary {
+.btn-outline {
   display: inline-block;
   background: transparent;
-  color: var(--ink);
-  border: 2px solid var(--ink);
-  padding: 12px 22px;
+  color: var(--ink-dark);
+  border: 1px solid var(--ink);
+  padding: 12px 24px;
   border-radius: 5px;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.btn-secondary:hover {
+.btn-outline:hover {
   background: var(--ink);
-  color: #fff;
+  color: #FFFFFF;
 }
 
-/* PODSTRÁNKY A KARTY PRODUKTŮ */
+/* PODSTRÁNKY */
 .subpage-header {
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding-bottom: 18px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.fire-banner {
-  background: var(--accent);
-  color: #fff;
-  padding: 28px;
-  border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* ZAKÁZKOVÝ TISK - POSTUP A MATERIÁLY */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-num {
+  font-family: 'Archivo', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.step-card h3 {
+  font-size: 20px;
+}
+
+.step-card p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.materials-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.mat-table th, .mat-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mat-table th {
+  font-family: 'Archivo', Arial, sans-serif;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.mat-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* KARTY PRODUKTŮ */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -275,7 +313,7 @@ main {
 
 .card {
   background: var(--surface);
-  color: var(--ink);
+  color: var(--ink-dark);
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 16px;
@@ -286,8 +324,7 @@ main {
 
 .photo {
   aspect-ratio: 4/3;
-  background: #E4E3DD;
-  border: 1px dashed #B5B4AD;
+  background: #EAEAE8;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -298,12 +335,12 @@ main {
 }
 
 .name {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 .price {
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
   color: var(--accent);
 }
@@ -312,7 +349,7 @@ main {
   margin-top: auto;
   display: inline-block;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--ink-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -321,25 +358,7 @@ main {
   color: var(--accent);
 }
 
-/* INFO BOXY PRO ZAKÁZKOVÝ TISK A KONTAKT */
-.specs-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-}
-
-.spec-box {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 20px;
-  border-radius: 6px;
-}
-
-.spec-box h3 {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
+/* KONTAKT */
 .contact-box {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -347,7 +366,7 @@ main {
   border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .mail {
@@ -364,7 +383,7 @@ main {
 
 footer {
   background: var(--ink);
-  color: var(--line);
+  color: #CCCCCC;
   text-align: center;
   padding: 20px 24px;
   font-size: 15px;
@@ -376,7 +395,7 @@ footer {
 <header>
   <div class="wrap">
     <a class="logo-link" href="#domu" data-route="domu">
-      <img src="Melichar_logo_origin%C3%A1l.png" alt="Logo 3DTiskGeisler">
+      <img src="3DTiskGeisler%20LOGO.png" alt="Logo 3DTiskGeisler">
       <span class="logo-text">3DTisk<span>Geisler</span></span>
     </a>
     <nav>
@@ -392,39 +411,37 @@ footer {
 <main>
   <div class="wrap">
 
-    <!-- 1. ÚVODNÍ STRÁNKA -->
+    <!-- 1. DOMŮ -->
     <section id="page-domu" class="page active">
       <div class="page-content">
         <div class="hero-box">
-          <div class="hero-text">
-            <span class="hero-badge">Zakázková výroba • 3D tisk • CAD</span>
-            <h1>Vytisknu vám, co potřebujete.</h1>
-            <p>[Tady bude váš úvodní text. Pár jednoduchých vět o vás, o tom co děláte, od jednoho kusu až po menší série.]</p>
-            <div>
-              <a class="btn" href="#kontakt" data-route="kontakt">Napsat e-mail</a>
-            </div>
+          <h1>Vytisknu vám, co potřebujete.</h1>
+          <p>Zakázkový 3D tisk od jednoho kusu až po menší série. Vytisknu váš hotový model, nebo pro vás navrhnu náhradní díl či přípravek na míru podle rozměrů.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#kontakt" data-route="kontakt">Napsat e-mail</a>
+            <a class="btn-outline" href="#zakazkovy-tisk" data-route="zakazkovy-tisk">Jak funguje zakázkový tisk</a>
           </div>
         </div>
 
         <div class="nav-tiles">
           <a class="tile" href="#zakazkovy-tisk" data-route="zakazkovy-tisk">
             <div class="tile-title">Zakázkový tisk <span>→</span></div>
-            <div class="tile-desc">Tisk z dodaných modelů (STL/STEP), náhradní díly i návrh na míru.</div>
+            <div class="tile-desc">Tisk z vlastních modelů (STL/STEP), výroba náhradních dílů i CAD návrh.</div>
           </a>
 
           <a class="tile" href="#produkty" data-route="produkty">
             <div class="tile-title">Produkty <span>→</span></div>
-            <div class="tile-desc">Hotové výrobky, doplňky a vychytávky, které stačí jen objednat.</div>
+            <div class="tile-desc">Hotové výrobky, doplňky a praktické díly připravené k objednání.</div>
           </a>
 
-          <a class="tile fire" href="#pro-hasice" data-route="pro-hasice">
+          <a class="tile" href="#pro-hasice" data-route="pro-hasice">
             <div class="tile-title">Pro hasiče <span>→</span></div>
             <div class="tile-desc">Odolné držáky, vybavení do zásahových vozidel a doplňky pro jednotky.</div>
           </a>
 
           <a class="tile" href="#kontakt" data-route="kontakt">
             <div class="tile-title">Kontakt <span>→</span></div>
-            <div class="tile-desc">Pošlete poptávku, rozměry nebo výkres. Odpovídám co nejdříve.</div>
+            <div class="tile-desc">Pošlete poptávku, soubor nebo rozměry. Odpovím s cenou a termínem.</div>
           </a>
         </div>
       </div>
@@ -435,26 +452,64 @@ footer {
       <div class="page-content">
         <div class="subpage-header">
           <h2>Zakázkový tisk</h2>
-          <p>Dělám 3D tisk na zakázku. Napište mi e-mailem, co potřebujete, a domluvíme se na materiálu, ceně a termínu.</p>
+          <p>Potřebujete vyrobit konkrétní díl? Stačí poslat 3D data nebo popsat, co má součástka vydržet.</p>
         </div>
 
-        <div class="specs-list">
-          <div class="spec-box">
-            <h3>1. Máte vlastní 3D model</h3>
-            <p>Pošlete soubor ve formátu STL, STEP nebo 3MF, napište požadovaný počet kusů a k čemu díl bude sloužit.</p>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01 / POPTÁVKA</div>
+            <h3>Pošlete model nebo zadání</h3>
+            <p>Zašlete soubor (STL, STEP, 3MF) a počet kusů. Pokud model nemáte, stačí poslat náčrtek s rozměry nebo poškozený originál.</p>
           </div>
-          <div class="spec-box">
-            <h3>2. Potřebujete díl navrhnout</h3>
-            <p>[Doplňte, že umíte vymodelovat náhradní díl podle rozměrů, výkresu nebo poškozeného originálu.]</p>
+          <div class="step-card">
+            <div class="step-num">02 / KALKULACE</div>
+            <h3>Výběr materiálu a cena</h3>
+            <p>Podle mechanického a teplotního namáhání doporučím vhodný plast, spočítám přesnou cenu a domluvíme termín.</p>
           </div>
-          <div class="spec-box">
-            <h3>3. Výběr materiálu</h3>
-            <p>Tisknu z běžných i technických plastů (PLA, PETG, ASA/ABS, TPU) podle mechanické a teplotní zátěže.</p>
+          <div class="step-card">
+            <div class="step-num">03 / VÝROBA</div>
+            <h3>Tisk a předání</h3>
+            <p>Po odsouhlasení díl vytisknu, zkontroluji a odešlu Zásilkovnou / Balíkovnou, případně předám osobně.</p>
           </div>
+        </div>
+
+        <div class="materials-box">
+          <h3>Používané materiály</h3>
+          <table class="mat-table">
+            <thead>
+              <tr>
+                <th>Materiál</th>
+                <th>Vlastnosti</th>
+                <th>Typické použití</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PLA</strong></td>
+                <td>Pevný, přesný tisk, široký výběr barev</td>
+                <td>Prototypy, krabičky, modely, interiérové doplňky</td>
+              </tr>
+              <tr>
+                <td><strong>PETG</strong></td>
+                <td>Houževnatý, odolný vůči vlhkosti a běžným chemikáliím</td>
+                <td>Mechanické díly, držáky, namáhané součástky</td>
+              </tr>
+              <tr>
+                <td><strong>ASA / ABS</strong></td>
+                <td>Teplotní odolnost do cca 95 °C, UV stabilita</td>
+                <td>Venkovní díly, držáky do auta a zásahové techniky</td>
+              </tr>
+              <tr>
+                <td><strong>TPU</strong></td>
+                <td>Pružný elastomer, tlumí nárazy</td>
+                <td>Těsnění, krytky, dorazy, ochranné prvky</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <div>
-          <a class="btn" href="#kontakt" data-route="kontakt">Poptat zakázkový tisk</a>
+          <a class="btn" href="#kontakt" data-route="kontakt">Poslat nezávaznou poptávku</a>
         </div>
       </div>
     </section>
@@ -464,7 +519,7 @@ footer {
       <div class="page-content">
         <div class="subpage-header">
           <h2>Produkty</h2>
-          <p>Přehled hotových výrobků. Pro objednání klikněte u vybraného kusu na odkaz a napište mi e-mail.</p>
+          <p>Hotové výrobky, které tisknu pravidelně. Objednat je můžete jednoduše e-mailem.</p>
         </div>
 
         <div class="grid">
@@ -511,9 +566,9 @@ footer {
     <!-- 4. PRO HASIČE -->
     <section id="page-pro-hasice" class="page">
       <div class="page-content">
-        <div class="fire-banner">
+        <div class="subpage-header">
           <h2>Pro hasiče</h2>
-          <p>[Tady bude text pro hasiče: co jim nabízíte, odolné materiály, vyzkoušeno v praxi.]</p>
+          <p>Odolné 3D tištěné doplňky, držáky na výstroj a organizéry do nástaveb zásahových vozidel navržené s ohledem na reálný provoz.</p>
         </div>
 
         <div class="grid">
@@ -544,7 +599,7 @@ footer {
       <div class="page-content">
         <div class="subpage-header">
           <h2>Kontakt</h2>
-          <p>Pište mi e-mailem. Odpovím vám co nejdříve s kalkulací a termínem dodání.</p>
+          <p>Napište mi e-mailem, co potřebujete vytisknout nebo navrhnout. Odpovím vám co nejdříve.</p>
         </div>
 
         <div class="contact-box">
@@ -567,12 +622,8 @@ footer {
   const navLinks = document.querySelectorAll('nav a');
 
   function showPage(route) {
-    const targetId = 'page-' + route;
-    const targetPage = document.getElementById(targetId);
-
-    if (!targetPage) {
-      route = 'domu';
-    }
+    const targetPage = document.getElementById('page-' + route);
+    if (!targetPage) route = 'domu';
 
     pages.forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + route).classList.add('active');
@@ -584,7 +635,6 @@ footer {
     window.scrollTo(0, 0);
   }
 
-  // Klikání na odkazy s data-route
   document.querySelectorAll('[data-route]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
@@ -594,13 +644,11 @@ footer {
     });
   });
 
-  // Podpora tlačítek Zpět / Vpřed v prohlížeči
   window.addEventListener('hashchange', () => {
     const hash = location.hash.replace('#', '') || 'domu';
     showPage(hash);
   });
 
-  // Načtení správné podstránky při prvním otevření URL s hashem
   const initialRoute = location.hash.replace('#', '') || 'domu';
   showPage(initialRoute);
 </script>
