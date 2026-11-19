@@ -263,6 +263,11 @@ main {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+
+  .slideshow {
+    max-width: 460px;
+    margin: 0 auto;
+  }
 }
 
 .hero-main {
@@ -287,7 +292,7 @@ main {
 .slideshow {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
   overflow: hidden;
   border: 1px solid var(--line);
   background: #E6E8EB;
@@ -729,13 +734,21 @@ footer .wrap {
 }
 </style>
 <script>
-/* Fotky FW1, FW2, ... mohou být v různých formátech. Zkouší se postupně tyto přípony. */
-var FW_EXT = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'webp'];
+/* Fotky FW1, FW2, ... mohou být v různých formátech. Zkouší se postupně tyto přípony (i malými písmeny fw). */
+var FW_EXT = ['jpg', 'jpeg', 'JPG', 'JPEG', 'Jpg', 'Jpeg', 'png', 'PNG', 'webp', 'gif', 'avif'];
+function fwList(name) {
+  var out = [], bases = [name, name.toLowerCase()];
+  for (var b = 0; b < bases.length; b++) {
+    for (var e = 0; e < FW_EXT.length; e++) out.push(bases[b] + '.' + FW_EXT[e]);
+  }
+  return out;
+}
 function fwNext(img) {
+  var list = fwList(img.dataset.fw);
   var i = (parseInt(img.dataset.i, 10) || 0) + 1;
-  if (i < FW_EXT.length) {
+  if (i < list.length) {
     img.dataset.i = i;
-    img.src = img.dataset.fw + '.' + FW_EXT[i];
+    img.src = list[i];
   } else {
     img.style.display = 'none';
   }
@@ -1147,8 +1160,14 @@ function fwNext(img) {
   }
 
   function startAutoSlide() {
+    clearInterval(slideTimer); /* vždy jen jeden časovač, jinak snímky přeskakují */
     slideTimer = setInterval(() => goToSlide(currentSlide + 1), 3500);
   }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearInterval(slideTimer);
+    else startAutoSlide();
+  });
 
   function resetAutoSlide() {
     clearInterval(slideTimer);
