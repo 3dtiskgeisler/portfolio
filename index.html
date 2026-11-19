@@ -728,6 +728,19 @@ footer .wrap {
   fill: currentColor;
 }
 </style>
+<script>
+/* Fotky FW1, FW2, ... mohou být v různých formátech. Zkouší se postupně tyto přípony. */
+var FW_EXT = ['jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'webp'];
+function fwNext(img) {
+  var i = (parseInt(img.dataset.i, 10) || 0) + 1;
+  if (i < FW_EXT.length) {
+    img.dataset.i = i;
+    img.src = img.dataset.fw + '.' + FW_EXT[i];
+  } else {
+    img.style.display = 'none';
+  }
+}
+</script>
 </head>
 <body>
 
@@ -770,16 +783,16 @@ footer .wrap {
           <div class="slideshow" id="heroSlideshow">
             <div class="slides-track" id="slidesTrack">
               <!-- Fotky se jmenují FW1, FW2, FW3 … (plynule dál po celém webu). Dokud soubor ve složce chybí, zobrazí se jeho název. -->
-              <div class="slide"><div class="slide-placeholder">FW1.jpg</div><img src="FW1.jpg" alt="Výrobek 1" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW2.jpg</div><img src="FW2.jpg" alt="Výrobek 2" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW3.jpg</div><img src="FW3.jpg" alt="Výrobek 3" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW4.jpg</div><img src="FW4.jpg" alt="Výrobek 4" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW5.jpg</div><img src="FW5.jpg" alt="Výrobek 5" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW6.jpg</div><img src="FW6.jpg" alt="Výrobek 6" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW7.jpg</div><img src="FW7.jpg" alt="Výrobek 7" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW8.jpg</div><img src="FW8.jpg" alt="Výrobek 8" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW9.jpg</div><img src="FW9.jpg" alt="Výrobek 9" onerror="this.style.display='none'"></div>
-              <div class="slide"><div class="slide-placeholder">FW10.jpg</div><img src="FW10.jpg" alt="Výrobek 10" onerror="this.style.display='none'"></div>
+              <div class="slide"><div class="slide-placeholder">FW1</div><img src="FW1.jpg" data-fw="FW1" alt="Výrobek 1" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW2</div><img src="FW2.jpg" data-fw="FW2" alt="Výrobek 2" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW3</div><img src="FW3.jpg" data-fw="FW3" alt="Výrobek 3" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW4</div><img src="FW4.jpg" data-fw="FW4" alt="Výrobek 4" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW5</div><img src="FW5.jpg" data-fw="FW5" alt="Výrobek 5" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW6</div><img src="FW6.jpg" data-fw="FW6" alt="Výrobek 6" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW7</div><img src="FW7.jpg" data-fw="FW7" alt="Výrobek 7" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW8</div><img src="FW8.jpg" data-fw="FW8" alt="Výrobek 8" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW9</div><img src="FW9.jpg" data-fw="FW9" alt="Výrobek 9" onerror="fwNext(this)"></div>
+              <div class="slide"><div class="slide-placeholder">FW10</div><img src="FW10.jpg" data-fw="FW10" alt="Výrobek 10" onerror="fwNext(this)"></div>
             </div>
             <button class="slide-btn slide-prev" id="slidePrev" aria-label="Předchozí">‹</button>
             <button class="slide-btn slide-next" id="slideNext" aria-label="Další">›</button>
@@ -817,7 +830,7 @@ footer .wrap {
               <span>Kontakt a o mně</span>
               <span class="dir-arrow">→</span>
             </div>
-            <div class="dir-desc">Máte o službu zájem? Napište mi e-mail s poptávkou.</div>
+            <div class="dir-desc">Máte o službu zájem? Napište mi e-mail s poptávkou. Najdete tu i pár slov o mně: dobrovolný hasič a student ČVUT.</div>
           </a>
         </div>
       </div>
@@ -860,30 +873,30 @@ footer .wrap {
 
           <div class="gallery-grid">
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW11.jpg</div><img src="FW11.jpg" alt="Realizace 11" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW11</div><img src="FW11.jpg" data-fw="FW11" alt="Realizace 11" onerror="fwNext(this)"></div>
               <figcaption>Volitelný popisek k fotce (např. náhradní ozubené kolo z PETG).</figcaption>
             </figure>
 
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW12.jpg</div><img src="FW12.jpg" alt="Realizace 12" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW12</div><img src="FW12.jpg" data-fw="FW12" alt="Realizace 12" onerror="fwNext(this)"></div>
             </figure>
 
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW13.jpg</div><img src="FW13.jpg" alt="Realizace 13" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW13</div><img src="FW13.jpg" data-fw="FW13" alt="Realizace 13" onerror="fwNext(this)"></div>
               <figcaption>Držák na míru dle dodaného náčrtu, materiál ASA.</figcaption>
             </figure>
 
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW14.jpg</div><img src="FW14.jpg" alt="Realizace 14" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW14</div><img src="FW14.jpg" data-fw="FW14" alt="Realizace 14" onerror="fwNext(this)"></div>
             </figure>
 
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW15.jpg</div><img src="FW15.jpg" alt="Realizace 15" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW15</div><img src="FW15.jpg" data-fw="FW15" alt="Realizace 15" onerror="fwNext(this)"></div>
               <figcaption>Sériový tisk 30 ks ochranných krytek.</figcaption>
             </figure>
 
             <figure class="gallery-item">
-              <div class="gallery-frame"><div class="gallery-placeholder">FW16.jpg</div><img src="FW16.jpg" alt="Realizace 16" onerror="this.style.display='none'"></div>
+              <div class="gallery-frame"><div class="gallery-placeholder">FW16</div><img src="FW16.jpg" data-fw="FW16" alt="Realizace 16" onerror="fwNext(this)"></div>
             </figure>
           </div>
         </div>
@@ -900,37 +913,37 @@ footer .wrap {
 
         <div class="grid">
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW17.jpg</span><img src="FW17.jpg" alt="Produkt 1, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW17.jpg" aria-label="Fotka 1"><span>FW17</span><img src="FW17.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW18.jpg" aria-label="Fotka 2"><span>FW18</span><img src="FW18.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW19.jpg" aria-label="Fotka 3"><span>FW19</span><img src="FW19.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW17</span><img src="FW17.jpg" data-fw="FW17" alt="Produkt 1, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW17" aria-label="Fotka 1"><span>FW17</span><img src="FW17.jpg" data-fw="FW17" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW18" aria-label="Fotka 2"><span>FW18</span><img src="FW18.jpg" data-fw="FW18" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW19" aria-label="Fotka 3"><span>FW19</span><img src="FW19.jpg" data-fw="FW19" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW20.jpg</span><img src="FW20.jpg" alt="Produkt 2, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW20.jpg" aria-label="Fotka 1"><span>FW20</span><img src="FW20.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW21.jpg" aria-label="Fotka 2"><span>FW21</span><img src="FW21.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW22.jpg" aria-label="Fotka 3"><span>FW22</span><img src="FW22.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW20</span><img src="FW20.jpg" data-fw="FW20" alt="Produkt 2, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW20" aria-label="Fotka 1"><span>FW20</span><img src="FW20.jpg" data-fw="FW20" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW21" aria-label="Fotka 2"><span>FW21</span><img src="FW21.jpg" data-fw="FW21" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW22" aria-label="Fotka 3"><span>FW22</span><img src="FW22.jpg" data-fw="FW22" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW23.jpg</span><img src="FW23.jpg" alt="Produkt 3, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW23.jpg" aria-label="Fotka 1"><span>FW23</span><img src="FW23.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW24.jpg" aria-label="Fotka 2"><span>FW24</span><img src="FW24.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW25.jpg" aria-label="Fotka 3"><span>FW25</span><img src="FW25.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW23</span><img src="FW23.jpg" data-fw="FW23" alt="Produkt 3, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW23" aria-label="Fotka 1"><span>FW23</span><img src="FW23.jpg" data-fw="FW23" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW24" aria-label="Fotka 2"><span>FW24</span><img src="FW24.jpg" data-fw="FW24" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW25" aria-label="Fotka 3"><span>FW25</span><img src="FW25.jpg" data-fw="FW25" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW26.jpg</span><img src="FW26.jpg" alt="Produkt 4, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW26.jpg" aria-label="Fotka 1"><span>FW26</span><img src="FW26.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW27.jpg" aria-label="Fotka 2"><span>FW27</span><img src="FW27.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW28.jpg" aria-label="Fotka 3"><span>FW28</span><img src="FW28.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW26</span><img src="FW26.jpg" data-fw="FW26" alt="Produkt 4, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW26" aria-label="Fotka 1"><span>FW26</span><img src="FW26.jpg" data-fw="FW26" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW27" aria-label="Fotka 2"><span>FW27</span><img src="FW27.jpg" data-fw="FW27" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW28" aria-label="Fotka 3"><span>FW28</span><img src="FW28.jpg" data-fw="FW28" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW29.jpg</span><img src="FW29.jpg" alt="Produkt 5, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW29.jpg" aria-label="Fotka 1"><span>FW29</span><img src="FW29.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW30.jpg" aria-label="Fotka 2"><span>FW30</span><img src="FW30.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW31.jpg" aria-label="Fotka 3"><span>FW31</span><img src="FW31.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW29</span><img src="FW29.jpg" data-fw="FW29" alt="Produkt 5, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW29" aria-label="Fotka 1"><span>FW29</span><img src="FW29.jpg" data-fw="FW29" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW30" aria-label="Fotka 2"><span>FW30</span><img src="FW30.jpg" data-fw="FW30" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW31" aria-label="Fotka 3"><span>FW31</span><img src="FW31.jpg" data-fw="FW31" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW32.jpg</span><img src="FW32.jpg" alt="Produkt 6, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW32.jpg" aria-label="Fotka 1"><span>FW32</span><img src="FW32.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW33.jpg" aria-label="Fotka 2"><span>FW33</span><img src="FW33.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW34.jpg" aria-label="Fotka 3"><span>FW34</span><img src="FW34.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW32</span><img src="FW32.jpg" data-fw="FW32" alt="Produkt 6, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW32" aria-label="Fotka 1"><span>FW32</span><img src="FW32.jpg" data-fw="FW32" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW33" aria-label="Fotka 2"><span>FW33</span><img src="FW33.jpg" data-fw="FW33" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW34" aria-label="Fotka 3"><span>FW34</span><img src="FW34.jpg" data-fw="FW34" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka: [Název produktu]">Objednat e-mailem</a>
@@ -949,19 +962,19 @@ footer .wrap {
 
         <div class="grid">
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW35.jpg</span><img src="FW35.jpg" alt="Produkt 7, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW35.jpg" aria-label="Fotka 1"><span>FW35</span><img src="FW35.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW36.jpg" aria-label="Fotka 2"><span>FW36</span><img src="FW36.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW37.jpg" aria-label="Fotka 3"><span>FW37</span><img src="FW37.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW35</span><img src="FW35.jpg" data-fw="FW35" alt="Produkt 7, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW35" aria-label="Fotka 1"><span>FW35</span><img src="FW35.jpg" data-fw="FW35" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW36" aria-label="Fotka 2"><span>FW36</span><img src="FW36.jpg" data-fw="FW36" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW37" aria-label="Fotka 3"><span>FW37</span><img src="FW37.jpg" data-fw="FW37" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka (Pro hasiče): [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW38.jpg</span><img src="FW38.jpg" alt="Produkt 8, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW38.jpg" aria-label="Fotka 1"><span>FW38</span><img src="FW38.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW39.jpg" aria-label="Fotka 2"><span>FW39</span><img src="FW39.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW40.jpg" aria-label="Fotka 3"><span>FW40</span><img src="FW40.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW38</span><img src="FW38.jpg" data-fw="FW38" alt="Produkt 8, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW38" aria-label="Fotka 1"><span>FW38</span><img src="FW38.jpg" data-fw="FW38" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW39" aria-label="Fotka 2"><span>FW39</span><img src="FW39.jpg" data-fw="FW39" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW40" aria-label="Fotka 3"><span>FW40</span><img src="FW40.jpg" data-fw="FW40" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka (Pro hasiče): [Název produktu]">Objednat e-mailem</a>
           </div>
           <div class="card">
-            <div class="gal"><div class="photo"><span class="ph">FW41.jpg</span><img src="FW41.jpg" alt="Produkt 9, fotka 1" onerror="this.style.display='none'"></div><div class="thumbs"><button type="button" class="thumb active" data-src="FW41.jpg" aria-label="Fotka 1"><span>FW41</span><img src="FW41.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW42.jpg" aria-label="Fotka 2"><span>FW42</span><img src="FW42.jpg" alt="" onerror="this.style.display='none'"></button><button type="button" class="thumb" data-src="FW43.jpg" aria-label="Fotka 3"><span>FW43</span><img src="FW43.jpg" alt="" onerror="this.style.display='none'"></button></div></div>
+            <div class="gal"><div class="photo"><span class="ph">FW41</span><img src="FW41.jpg" data-fw="FW41" alt="Produkt 9, fotka 1" onerror="fwNext(this)"></div><div class="thumbs"><button type="button" class="thumb active" data-fw="FW41" aria-label="Fotka 1"><span>FW41</span><img src="FW41.jpg" data-fw="FW41" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW42" aria-label="Fotka 2"><span>FW42</span><img src="FW42.jpg" data-fw="FW42" alt="" onerror="fwNext(this)"></button><button type="button" class="thumb" data-fw="FW43" aria-label="Fotka 3"><span>FW43</span><img src="FW43.jpg" data-fw="FW43" alt="" onerror="fwNext(this)"></button></div></div>
             <div class="name">[Název produktu]</div>
             <div class="price">[CENA] Kč</div>
             <a href="mailto:3dtiskgeisler@gmail.com?subject=Objednávka (Pro hasiče): [Název produktu]">Objednat e-mailem</a>
@@ -1099,12 +1112,14 @@ footer .wrap {
     const gal = thumb.closest('.gal');
     const photo = gal.querySelector('.photo');
     const img = photo.querySelector('img');
-    const src = thumb.dataset.src;
+    const fw = thumb.dataset.fw;
     gal.querySelectorAll('.thumb').forEach(t => t.classList.toggle('active', t === thumb));
-    photo.querySelector('.ph').textContent = src;
-    img.alt = 'Fotka ' + src;
+    photo.querySelector('.ph').textContent = fw;
+    img.alt = 'Fotka ' + fw;
+    img.dataset.fw = fw;
+    img.dataset.i = '0';
     img.style.display = '';
-    img.src = src;
+    img.src = fw + '.jpg';
   });
 
   /* AUTOMATICKÁ SLIDESHOW */
